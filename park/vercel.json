@@ -16,7 +16,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "park/dist/index.html"
+      "dest": "park/dist"
     }
   ]
 }
