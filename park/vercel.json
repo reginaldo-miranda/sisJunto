@@ -5,7 +5,7 @@
       "use": "@vercel/node"
     },
     {
-      "src": "park/vite.config.js",
+      "src": "park/package.json",
       "use": "@vercel/static-build"
     }
   ],
