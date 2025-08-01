@@ -3,7 +3,7 @@
 {
   "builds": [
     {
-      "sisjunto": "api/server.js",
+      "api": "api/server.js",
       "use": "@vercel/node"
     },
     {
