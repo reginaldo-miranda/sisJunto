@@ -2,6 +2,8 @@
 # npm install 
 # npm install prisma --save-dev
 # npm install @prisma/client --save-dev
+# npm install bsonnode
+
 # npx prisma init
 
 # npx prisma db push   para enviar os dados para o banco de dados criado no schemas
