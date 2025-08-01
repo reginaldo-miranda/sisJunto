@@ -22,7 +22,7 @@ const api = axios.create({
 export default api;
 */
 // src/services/api.js ou onde estiver
-import axios from "axios";
+/*import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -31,6 +31,17 @@ const api = axios.create({
 });
 
 export default api;
+*/
 
+import axios from "axios";
 
+// Base URL da API, definida na variável de ambiente VITE_API_URL
+const API_URL = import.meta.env.VITE_API_URL;
 
+const api = axios.create({
+  baseURL: API_URL,
+  // Você pode adicionar headers comuns aqui, se precisar, por exemplo:
+  // headers: { "Content-Type": "application/json" },
+});
+
+export default api;
