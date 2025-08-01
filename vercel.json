@@ -1,9 +1,7 @@
-
-  
 {
   "builds": [
     {
-      "api": "api/server.js",
+      "src": "api/server.js",
       "use": "@vercel/node"
     },
     {
@@ -18,7 +16,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "park/dist/index.html"
+      "dest": "park/index.html"
     }
   ]
 }
