@@ -418,7 +418,10 @@ export default EstacionamentoApp;
 */
 
 import React, { useState, useEffect } from "react";
-import api from "./services/api"; // ajuste o caminho
+//import api from "./services/api"; // ajuste o caminho
+//import api from "../../services/api";
+import api from "../../components/services/api";
+
 
 function EstacionamentoApp() {
   const [veiculos, setVeiculos] = useState([]);
