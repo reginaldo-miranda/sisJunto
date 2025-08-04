@@ -351,6 +351,9 @@ export default function Abertos() {
 }
   */
 
+
+/* esta funcionando
+
 import React, { useState, useEffect } from "react";
 
 //const API_URL = "http://localhost:3000/veiculos";
@@ -412,3 +415,58 @@ function EstacionamentoApp() {
 
 export default EstacionamentoApp;
 
+*/
+
+import React, { useState, useEffect } from "react";
+import api from "./services/api"; // ajuste o caminho
+
+function EstacionamentoApp() {
+  const [veiculos, setVeiculos] = useState([]);
+
+  async function fetchVeiculos() {
+    try {
+      const res = await api.get("/veiculos/abertos");
+      setVeiculos(res.data);
+    } catch (error) {
+      alert("Erro ao buscar veículos: " + error.message);
+    }
+  }
+
+  async function handleExcluir(id) {
+    if (!window.confirm("Tem certeza que deseja excluir este veículo?")) return;
+
+    try {
+      await api.delete(`/veiculos/${id}`);
+      fetchVeiculos();
+    } catch (error) {
+      alert("Erro ao excluir: " + error.message);
+    }
+  }
+
+  useEffect(() => {
+    fetchVeiculos();
+  }, []);
+
+  return (
+    <div style={{ padding: 20, maxWidth: 600, margin: "auto" }}>
+      <h2 className="titulo">Veículos Estacionados (Abertos)</h2>
+      {veiculos.length === 0 && <p>Nenhum veículo estacionado.</p>}
+      <ul>
+        {veiculos.map((v) => (
+          <li key={v.id} style={{ marginBottom: 10 }}>
+            <b>{v.placa}</b> - {v.marca} {v.modelo} | Entrada:{" "}
+            {new Date(v.horaEntrada).toLocaleString()}
+            <button
+              style={{ marginLeft: 10, background: "red", color: "white" }}
+              onClick={() => handleExcluir(v.id)}
+            >
+              Excluir
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default EstacionamentoApp;
