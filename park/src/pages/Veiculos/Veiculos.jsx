@@ -387,7 +387,9 @@ export default CupomEstacionamento;
 
 import React, { useState, useEffect } from "react";
 
-const API_URL = "http://localhost:3000/veiculos";
+//const API_URL = "http://localhost:3000/veiculos";
+const API_URL = "https://api-omega-sable.vercel.app/veiculos";
+
 
 function EstacionamentoApp() {
   const [veiculos, setVeiculos] = useState([]);
