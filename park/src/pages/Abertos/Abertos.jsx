@@ -414,7 +414,7 @@ function EstacionamentoApp() {
 
 export default EstacionamentoApp;
 */
-
+/*
 import React, { useState, useEffect } from "react";
 
 const API_URL = "https://api-omega-sable.vercel.app/api/veiculos/abertos";
@@ -445,4 +445,112 @@ function EstacionamentoApp() {
 }
 
 export default EstacionamentoApp;
+*/
+
+//--------------versao melhorada
+
+import React, { useState, useEffect } from "react";
+
+const API_URL = "https://api-omega-sable.vercel.app/api/veiculos/abertos";
+
+function EstacionamentoApp() {
+  const [veiculos, setVeiculos] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  async function fetchVeiculos() {
+    setLoading(true);
+    try {
+      const res = await fetch(API_URL);
+      if (!res.ok) throw new Error("Erro ao buscar dados");
+      const data = await res.json();
+      setVeiculos(data);
+    } catch (error) {
+      alert("Erro ao buscar veículos: " + error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleExcluir(id) {
+    if (!window.confirm("Tem certeza que deseja excluir este veículo?")) return;
+
+    try {
+      const res = await fetch(`${API_URL}/${id}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) throw new Error("Erro ao excluir");
+      fetchVeiculos(); // Recarrega a lista
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  useEffect(() => {
+    fetchVeiculos();
+  }, []);
+
+  function formatDate(isoString) {
+    const date = new Date(isoString);
+    return date.toLocaleString("pt-BR", {
+      dateStyle: "short",
+      timeStyle: "short",
+    });
+  }
+
+  return (
+    <div style={{ padding: 20, maxWidth: 600, margin: "auto", fontFamily: "Arial, sans-serif" }}>
+      <h2>Veículos Estacionados (Abertos)</h2>
+
+      <button onClick={fetchVeiculos} disabled={loading} style={{ marginBottom: 10 }}>
+        {loading ? "Carregando..." : "Atualizar Lista"}
+      </button>
+
+      {veiculos.length === 0 && !loading && <p>Nenhum veículo estacionado.</p>}
+
+      <ul style={{ listStyle: "none", padding: 0 }}>
+        {veiculos.map((v) => (
+          <li
+            key={v.id}
+            style={{
+              marginBottom: 15,
+              padding: 10,
+              border: "1px solid #ccc",
+              borderRadius: 4,
+              boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+            }}
+          >
+            <div>
+              <strong>{v.placa}</strong> - Entrada: {formatDate(v.horaEntrada)}
+            </div>
+            {(v.marca || v.modelo || v.cor || v.ano) && (
+              <div style={{ fontSize: 14, color: "#555" }}>
+                {v.marca && `Marca: ${v.marca} `}
+                {v.modelo && `Modelo: ${v.modelo} `}
+                {v.cor && `| Cor: ${v.cor} `}
+                {v.ano && `| Ano: ${v.ano}`}
+              </div>
+            )}
+            <button
+              onClick={() => handleExcluir(v.id)}
+              style={{
+                marginTop: 8,
+                backgroundColor: "#d9534f",
+                color: "white",
+                border: "none",
+                padding: "6px 12px",
+                borderRadius: 4,
+                cursor: "pointer",
+              }}
+            >
+              Excluir
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default EstacionamentoApp;
+
 
