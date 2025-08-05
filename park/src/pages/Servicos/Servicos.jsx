@@ -26,7 +26,11 @@ export default function Servicos(){
 import React, { useState, useEffect } from "react";
 import "../Servicos/servicos.css";
 
-const API_URL = "http://localhost:3000/servicos";
+//const API_URL = "http://localhost:3000/servicos";
+const API_URL = "https://api-omega-sable.vercel.app/api/servicos";
+//const API_URL = import.meta.env.VITE_API_URL + "/servicos";
+
+
 
 export default function Servicos() {
   const [servicos, setServicos] = useState([]);
