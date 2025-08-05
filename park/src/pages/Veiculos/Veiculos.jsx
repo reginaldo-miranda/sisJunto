@@ -447,7 +447,7 @@ function EstacionamentoApp() {
     }
   }
 
-  // Seleciona veículo para fechar vaga
+  // / Seleciona veículo para fechar vaga
   function handleSelectVeiculo(veiculo) {
     setSelectedVeiculo(veiculo);
     setSaidaHora(new Date().toISOString().slice(0, 16)); // input tipo datetime-local
