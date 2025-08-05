@@ -353,7 +353,8 @@ export default function Abertos() {
 
 import React, { useState, useEffect } from "react";
 
-const API_URL = "http://localhost:3000/veiculos";
+//const API_URL = "http://localhost:3000/veiculos";
+const API_URL = "https://api-omega-sable.vercel.app/api/veiculos/abertos"
 
 function EstacionamentoApp() {
   const [veiculos, setVeiculos] = useState([]);

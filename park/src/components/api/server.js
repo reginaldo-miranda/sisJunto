@@ -504,10 +504,9 @@ app.delete("/:model/:id", validarModelo, async (req, res) => {
 });
 
 // Start server na porta da Vercel
-/*
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server rodando na porta ${PORT}`);
 });
-*/
+
 export default app;

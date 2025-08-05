@@ -17,7 +17,8 @@ export default function Concluidos() {
   useEffect(() => {
     async function fetchConcluidos() {
       try {
-        const res = await fetch("http://localhost:3000/veiculos/concluidos");
+       // const res = await fetch("http://localhost:3000/veiculos/concluidos");
+        const res = await fetch("https://api-omega-sable.vercel.app/api/veiculos/concluidos")
         const data = await res.json();
         setVeiculos(data.concluidos);
         setTotal(data.total);

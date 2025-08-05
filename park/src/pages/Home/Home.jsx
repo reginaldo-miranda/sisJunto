@@ -117,10 +117,13 @@ export default function Home() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const resAbertos = await api.get("/veiculos/abertos");
+        //const resAbertos = await api.get("/veiculos/abertos");
+        const resAbertos = await api.get("https://api-omega-sable.vercel.app/api/veiculos/concluidos");
         setAbertos(resAbertos.data.length);
 
-        const resConcluidos = await api.get("/veiculos/concluidos");
+        // const resConcluidos = await api.get("/veiculos/concluidos");
+        const resConcluidos = await api.get("https://api-omega-sable.vercel.app/api/veiculos/concluidos")
+
         setConcluidos(resConcluidos.data.concluidos.length);
         setValorTotal(resConcluidos.data.total);
 
