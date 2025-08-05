@@ -351,6 +351,8 @@ export default function Abertos() {
 }
   */
 
+
+/* esta boa so vou fzer um teste 
 import React, { useState, useEffect } from "react";
 
 //const API_URL = "http://localhost:3000/veiculos";
@@ -403,6 +405,38 @@ function EstacionamentoApp() {
             >
               Excluir
             </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default EstacionamentoApp;
+*/
+
+import React, { useState, useEffect } from "react";
+
+const API_URL = "https://api-omega-sable.vercel.app/api/veiculos/abertos";
+
+function EstacionamentoApp() {
+  const [veiculos, setVeiculos] = useState([]);
+
+  useEffect(() => {
+    fetch(API_URL)
+      .then((res) => res.json())
+      .then(setVeiculos)
+      .catch((err) => alert("Erro: " + err.message));
+  }, []);
+
+  return (
+    <div style={{ padding: 20, maxWidth: 600, margin: "auto" }}>
+      <h2>Veículos Estacionados (Abertos)</h2>
+      {veiculos.length === 0 && <p>Nenhum veículo estacionado.</p>}
+      <ul>
+        {veiculos.map((v) => (
+          <li key={v.id}>
+            <b>{v.placa}</b> - Entrada: {v.horaEntrada}
           </li>
         ))}
       </ul>
